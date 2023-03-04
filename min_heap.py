@@ -62,7 +62,7 @@ class MinHeap:
                 while child != 0 and self._heap[parent] > self._heap[child]:
                    self._heap[self._heap.length() - 1] = self._heap[parent]
                    self._heap[parent] = self._heap[child]
-                   self._heap[self._heap.length() - 2] = self._heap[self._heap.length() - 1]
+                   self._heap[child] = self._heap[self._heap.length() - 1]
                    child = parent
                    parent = (child - 1) // 2
 
