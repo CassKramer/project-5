@@ -47,7 +47,6 @@ class MinHeap:
         if self._heap.length() == self._heap._capacity:
             self._heap.resize(self._heap._capacity * 2)
 
-
         if self._heap.length() > 1:
             for index in range(self._heap.length() - 2, -1, -1):
                 if self._heap[self._heap.length() - 1] < self._heap[index]:
