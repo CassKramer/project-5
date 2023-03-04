@@ -1,10 +1,9 @@
-# Name:
-# OSU Email:
-# Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
-# Description:
-
+# Name: Cassandra Kramer
+# OSU Email: kramecas@oregonstate.edu
+# Course: CS261 - Data Structures/ Section
+# Assignment: 5 MinHeap Implementation
+# Due Date: 3/6/2023
+# Description: Use dynamic array assignment to implement the complete binary tree heap
 
 from dynamic_array import *
 
@@ -41,9 +40,26 @@ class MinHeap:
 
     def add(self, node: object) -> None:
         """
-        TODO: Write this implementation
+        Adds a new object to minheap while maintaining the heap property
         """
-        pass
+        num = 3
+
+        self._heap.append(node)
+        if self._heap.length() == self._heap._capacity:
+            self._heap.resize(self._heap._capacity * 2)
+
+
+        if self._heap.length() > 1:
+            for index in range(self._heap.length() - 2, -1, -1):
+                if self._heap[self._heap.length() - 1] < self._heap[index]:
+                    num += 1
+            self._heap._size += 1
+            value = num - 1
+            self._heap[self._heap.length() - 1] = self._heap[self._heap.length() - 2]
+            for index in range(self._heap.length() - 2, self._heap.length() - value, - 1):
+                self._heap[index] = self._heap[index - 1]
+            self._heap[self._heap.length() - value] = self._heap[self._heap.length() - 1]
+            self._heap._size -= 1
 
     def is_empty(self) -> bool:
         """
