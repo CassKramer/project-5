@@ -43,7 +43,6 @@ class MinHeap:
         Adds a new object to minheap while maintaining the heap property
         """
         num = 3
-
         self._heap.append(node)
         if self._heap.length() == self._heap._capacity:
             self._heap.resize(self._heap._capacity * 2)
