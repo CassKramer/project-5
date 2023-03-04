@@ -79,9 +79,15 @@ class MinHeap:
 
     def get_min(self) -> object:
         """
-        TODO: Write this implementation
+        Returns an object with the minimum key, without removing it
         """
-        pass
+        if self._heap.length() == 0:
+            raise MinHeapException
+        min = self._heap[0]
+        for index in (1, self._heap.length() - 1):
+            if self._heap[index] < min:
+                min = self._heap[index]
+        return min
 
     def remove_min(self) -> object:
         """
