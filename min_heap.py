@@ -70,9 +70,12 @@ class MinHeap:
 
     def is_empty(self) -> bool:
         """
-        TODO: Write this implementation
+        Returns True if the heap is empty or false otherwise
         """
-        pass
+        if self._heap.length() == 0:
+            return True
+        else:
+            return False
 
     def get_min(self) -> object:
         """
