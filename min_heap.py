@@ -98,19 +98,21 @@ class MinHeap:
         if self._heap.length() == 1:
             self._heap._size -= 1
         min = self._heap[0]
-        first_val = self._heap[0]
+
         index = 0
         self._heap[index] = self._heap[self._heap.length() - 1]
-        child_1 = 2 * index + 1
-        child_2 = 2 * index + 1
+        child_1 = (2 * index) + 1
+        child_2 = (2 * index) + 2
         while child_1 > self._heap.length() - 1 and child_2 > self._heap.length() - 1:
-            child_1 = 2 * index + 1
-            child_2 = 2 * index + 1
+
             if self._heap[child_1] < self._heap[child_2]:
                 if self._heap[child_1] < self._heap[index]:
                     self._heap[self._heap.length() - 1] = self._heap[index]
                     self._heap[index] = self._heap[child_1]
+                    self._heap[child_1] = self._heap[self._heap.length() - 1]
                     index = child_1
+                    child_1 = (index * 2) + 1
+                    child_2 = (index * 2) + 2
                 else:
                     self._heap._size -= 1
                     return min
@@ -118,7 +120,10 @@ class MinHeap:
                 if self._heap[child_2] < self._heap[index]:
                     self._heap[self._heap.length() - 1] = self._heap[index]
                     self._heap[index] = self._heap[child_2]
+                    self._heap[child_2] = self._heap[self._heap.length() - 1]
                     index = child_2
+                    child_1 = (index * 2) + 1
+                    child_2 = (index * 2) + 2
                 else:
                     self._heap._size -= 1
                     return min
