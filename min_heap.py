@@ -97,17 +97,17 @@ class MinHeap:
             raise MinHeapException
         if self._heap.length() == 1:
             self._heap._size -= 1
+            min = self._heap[0]
+            return min
         min = self._heap[0]
 
         index = 0
         self._heap[index] = self._heap[self._heap.length() - 1]
         child_1 = (2 * index) + 1
         child_2 = (2 * index) + 2
-        while child_1 > self._heap.length() - 1 and child_2 > self._heap.length() - 1:
-            if child_1 == self._heap.length():
-                self._heap._size -= 1
-                return min
-            if child_2 == self._heap.length() - 1:
+        while child_1 < self._heap.length() - 1:
+
+            if child_2 >= self._heap.length() - 1:
                 if self._heap[child_1] < self._heap[index]:
                     self._heap[self._heap.length() - 1] = self._heap[index]
                     self._heap[index] = self._heap[child_1]
