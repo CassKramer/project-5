@@ -123,6 +123,9 @@ class MinHeap:
                     index = child_1
                     child_1 = (index * 2) + 1
                     child_2 = (index * 2) + 2
+                else:
+                    self._heap._size -= 1
+                    return min
 
             if self._heap[child_1] < self._heap[child_2]:
                 if self._heap[child_1] < self._heap[index]:
