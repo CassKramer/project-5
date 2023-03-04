@@ -158,21 +158,75 @@ class MinHeap:
         return min
     def build_heap(self, da: DynamicArray) -> None:
         """
-        TODO: Write this implementation
+        overrides dynamic array and builds a heap from it
         """
-        pass
+        index = (da.length() - 1) // 2
+        child_1 = (index * 2) + 1
+        child_2 = (index * 2) + 2
+        da[da.length() - 1] = da[index]
+        while child_1 < da.length() - 1:
+
+            if child_2 >= da.length() - 1:
+                if da[child_1] < da[index]:
+                    da[da.length() - 1] = da[index]
+                    da[index] = da[child_1]
+                    da[child_1] = da[da.length() - 1]
+                    da._size -= 1
+
+
+            if da[child_1] == da[child_2]:
+                if da[child_1] < da[index]:
+                    da[da.length() - 1] = da[index]
+                    da[index] = da[child_1]
+                    da[child_1] = da[da.length() - 1]
+                    index = index - 1
+                    child_1 = (index * 2) + 1
+                    child_2 = (index * 2) + 2
+                    if child_1 >= da.length():
+                        da._size -= 1
+
+
+                else:
+                    da._size -= 1
+
+
+            if child_2 < da.length():
+                if da[child_1] < da[child_2]:
+                    if da[child_1] < da[index]:
+                        da[da.length() - 1] = da[index]
+                        da[index] = self._heap[child_1]
+                        self._heap[child_1] = self._heap[self._heap.length() - 1]
+                        index = index - 1
+                        child_1 = (index * 2) + 1
+                        child_2 = (index * 2) + 2
+                    else:
+                        self._heap._size -= 1
+
+                else:
+                    if self._heap[child_2] < self._heap[index]:
+                        self._heap[self._heap.length() - 1] = self._heap[index]
+                        self._heap[index] = self._heap[child_2]
+                        self._heap[child_2] = self._heap[self._heap.length() - 1]
+                        index = index - 1
+                        child_1 = (index * 2) + 1
+                        child_2 = (index * 2) + 2
+                    else:
+                        self._heap._size -= 1
+
+        self._heap._size -= 1
+
 
     def size(self) -> int:
         """
-        TODO: Write this implementation
+        Returns the number of items stored in the heap
         """
-        pass
+        return self._heap.length()
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Clears the contents of the heap
         """
-        pass
+        self._heap._size = self._heap._size - self._heap._size
 
 
 def heapsort(da: DynamicArray) -> None:
