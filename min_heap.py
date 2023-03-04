@@ -86,16 +86,23 @@ class MinHeap:
         if self._heap.length() == 1:
             return self._heap[0]
         min = self._heap[0]
-        for index in (1, self._heap.length() - 1):
-            if self._heap[index] < min:
-                min = self._heap[index]
+        #for index in (1, self._heap.length() - 1):
+
+            #if self._heap[index] < min:
+                #min = self._heap[index]
         return min
 
     def remove_min(self) -> object:
         """
-        TODO: Write this implementation
+        Returns an object with the minimum key and removes it
         """
-        pass
+        if self._heap.length() == 0:
+            raise MinHeapException
+        if self._heap.length() == 1:
+            self._heap._size -= 1
+        min = self._heap[0]
+        first_val = self._heap[0]
+
 
     def build_heap(self, da: DynamicArray) -> None:
         """
