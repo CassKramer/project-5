@@ -86,10 +86,7 @@ class MinHeap:
         if self._heap.length() == 1:
             return self._heap[0]
         min = self._heap[0]
-        #for index in (1, self._heap.length() - 1):
 
-            #if self._heap[index] < min:
-                #min = self._heap[index]
         return min
 
     def remove_min(self) -> object:
@@ -102,8 +99,31 @@ class MinHeap:
             self._heap._size -= 1
         min = self._heap[0]
         first_val = self._heap[0]
-
-
+        index = 0
+        self._heap[index] = self._heap[self._heap.length() - 1]
+        child_1 = 2 * index + 1
+        child_2 = 2 * index + 1
+        while child_1 > self._heap.length() - 1 and child_2 > self._heap.length() - 1:
+            child_1 = 2 * index + 1
+            child_2 = 2 * index + 1
+            if self._heap[child_1] < self._heap[child_2]:
+                if self._heap[child_1] < self._heap[index]:
+                    self._heap[self._heap.length() - 1] = self._heap[index]
+                    self._heap[index] = self._heap[child_1]
+                    index = child_1
+                else:
+                    self._heap._size -= 1
+                    return min
+            else:
+                if self._heap[child_2] < self._heap[index]:
+                    self._heap[self._heap.length() - 1] = self._heap[index]
+                    self._heap[index] = self._heap[child_2]
+                    index = child_2
+                else:
+                    self._heap._size -= 1
+                    return min
+        self._heap._size -= 1
+        return min
     def build_heap(self, da: DynamicArray) -> None:
         """
         TODO: Write this implementation
