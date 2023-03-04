@@ -42,22 +42,32 @@ class MinHeap:
         """
         Adds a new object to minheap while maintaining the heap property
         """
-        num = 3
-        self._heap.append(node)
+        self._heap._size += 1
+        self._heap[self._heap.length() - 1] = node
         if self._heap.length() == self._heap._capacity:
             self._heap.resize(self._heap._capacity * 2)
 
         if self._heap.length() > 1:
-            for index in range(self._heap.length() - 2, -1, -1):
-                if self._heap[self._heap.length() - 1] < self._heap[index]:
-                    num += 1
-            self._heap._size += 1
-            value = num - 1
-            self._heap[self._heap.length() - 1] = self._heap[self._heap.length() - 2]
-            for index in range(self._heap.length() - 2, self._heap.length() - value, - 1):
-                self._heap[index] = self._heap[index - 1]
-            self._heap[self._heap.length() - value] = self._heap[self._heap.length() - 1]
-            self._heap._size -= 1
+            child = (self._heap.length()) - 1
+            parent = (child - 1) // 2
+            if self._heap.get_at_index(parent) > self._heap.get_at_index(child):
+                self._heap._size += 1
+                self._heap[self._heap.length() - 1] = self._heap[parent]
+                self._heap.set_at_index(parent, self._heap[child])
+                self._heap[self._heap.length() - 2] = self._heap[self._heap.length() - 1]
+                child = parent
+                parent = (child - 1) // 2
+
+
+                while child != 0:
+                    if self._heap[parent] > self._heap[child]:
+                        self._heap[self._heap.length() - 1] = self._heap[parent]
+                        self._heap[parent] = self._heap[child]
+                        self._heap[self._heap.length() - 2] = self._heap[self._heap.length() - 1]
+                        child = parent
+                        parent = child - 1 // 2
+
+                self._heap._size -= 1
 
     def is_empty(self) -> bool:
         """
