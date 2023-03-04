@@ -83,6 +83,8 @@ class MinHeap:
         """
         if self._heap.length() == 0:
             raise MinHeapException
+        if self._heap.length() == 1:
+            min = self._heap[0]
         min = self._heap[0]
         for index in (1, self._heap.length() - 1):
             if self._heap[index] < min:
