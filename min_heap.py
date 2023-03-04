@@ -96,8 +96,8 @@ class MinHeap:
         if self._heap.length() == 0:
             raise MinHeapException
         if self._heap.length() == 1:
-            self._heap._size -= 1
             min = self._heap[0]
+            self._heap._size -= 1
             return min
         min = self._heap[0]
 
