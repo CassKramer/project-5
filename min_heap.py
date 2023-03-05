@@ -113,60 +113,84 @@ class MinHeap:
         """
         overrides dynamic array and builds a heap from it
         """
-        index = (da.length() - 1) // 2
-        child_1 = (index * 2) + 1
-        child_2 = (index * 2) + 2
-        da[da.length() - 1] = da[index]
-        while child_1 < da.length() - 1:
+        parent = (da.length() - 1) // 2
+        child_1 = (parent * 2) + 1
+        child_2 = (parent * 2) + 2
+        da[da.length() - 1] = da[parent]
 
-            if child_2 >= da.length() - 1:
-                if da[child_1] < da[index]:
-                    da[da.length() - 1] = da[index]
-                    da[index] = da[child_1]
-                    da[child_1] = da[da.length() - 1]
-                    da._size -= 1
+        while parent >= 0:
+            while child_1 < da.length() - 1:
+
+                if child_2 >= da.length() - 1:
+                    if da[child_1] < da[parent]:
+                        da[da.length() - 1] = da[parent]
+                        da[parent] = da[child_1]
+                        da[child_1] = da[da.length() - 1]
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
 
 
-            if da[child_1] == da[child_2]:
-                if da[child_1] < da[index]:
-                    da[da.length() - 1] = da[index]
-                    da[index] = da[child_1]
-                    da[child_1] = da[da.length() - 1]
-                    index = index - 1
-                    child_1 = (index * 2) + 1
-                    child_2 = (index * 2) + 2
-                    if child_1 >= da.length():
-                        da._size -= 1
+                if da[child_1] == da[child_2]:
+                    if da[child_1] < da[parent]:
+                        da[da.length() - 1] = da[parent]
+                        da[parent] = da[child_1]
+                        da[child_1] = da[da.length() - 1]
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
 
+
+                    else:
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+
+                elif child_2 < da.length() - 1:
+
+                    if da[child_1] < da[child_2]:
+                        if da[child_1] < da[parent]:
+                            da[da.length() - 1] = da[parent]
+                            da[parent] = da[child_1]
+                            da[child_1] = da[da.length() - 1]
+                            parent = parent - 1
+                            child_1 = (parent * 2) + 1
+                            child_2 = (parent * 2) + 2
+                        else:
+                            parent = parent - 1
+                            child_1 = (parent * 2) + 1
+                            child_2 = (parent * 2) + 2
+
+                    else:
+                        if da[child_2] < da[parent]:
+                            da[da.length() - 1] = da[parent]
+                            da[parent] = da[child_2]
+                            da[child_2] = da[da.length() - 1]
+                            parent = parent - 1
+                            child_1 = (parent * 2) + 1
+                            child_2 = (parent * 2) + 2
+                        else:
+                            parent = parent - 1
+                            child_1 = (parent * 2) + 1
+                            child_2 = (parent * 2) + 2
 
                 else:
-                    da._size -= 1
-
-
-            if child_2 < da.length():
-                if da[child_1] < da[child_2]:
-                    if da[child_1] < da[index]:
-                        da[da.length() - 1] = da[index]
-                        da[index] = self._heap[child_1]
-                        self._heap[child_1] = self._heap[self._heap.length() - 1]
-                        index = index - 1
-                        child_1 = (index * 2) + 1
-                        child_2 = (index * 2) + 2
+                    if da[child_1] < da[parent]:
+                        da[da.length() - 1] = da[parent]
+                        da[parent] = da[child_1]
+                        da[child_1] = da[da.length() - 1]
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
                     else:
-                        self._heap._size -= 1
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
 
-                else:
-                    if self._heap[child_2] < self._heap[index]:
-                        self._heap[self._heap.length() - 1] = self._heap[index]
-                        self._heap[index] = self._heap[child_2]
-                        self._heap[child_2] = self._heap[self._heap.length() - 1]
-                        index = index - 1
-                        child_1 = (index * 2) + 1
-                        child_2 = (index * 2) + 2
-                    else:
-                        self._heap._size -= 1
+            da._size -= 1
+            return
 
-        self._heap._size -= 1
 
 
     def size(self) -> int:
