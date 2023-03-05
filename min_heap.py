@@ -219,7 +219,7 @@ def _percolate_down(da: DynamicArray, parent: int) -> None:
                 parent = child_1
                 child_1 = (parent * 2) + 1
                 child_2 = (parent * 2) + 2
-                if child_1 >= da.length():
+                if child_1 >= da.length() - 1:
                     da._size -= 1
                     return
 
@@ -227,7 +227,7 @@ def _percolate_down(da: DynamicArray, parent: int) -> None:
                 da._size -= 1
                 return
 
-        if child_2 < da.length():
+        if child_2 < da.length() - 1:
             if da[child_1] < da[child_2]:
                 if da[child_1] < da[parent]:
                     da[da.length() - 1] = da[parent]
