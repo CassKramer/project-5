@@ -113,35 +113,37 @@ class MinHeap:
         """
         overrides heap and uses dynamic array to build new heap
         """
-        self._heap = da
-        self._heap._size += 1
-        parent = (self._heap.length() - 2) // 2
+        self._heap._size += da.length() - self._heap.length()
+
+
+        parent = (da.length() - 2) // 2
         child_1 = (parent * 2) + 1
         child_2 = (parent * 2) + 2
-        self._heap[self._heap.length() - 1] = self._heap[parent]
+        da._size += 1
+        da[da.length() - 1] = da[parent]
 
         while parent >= 0:
 
-            if child_1 >= self._heap.length() - 1 and child_2 >= self._heap.length():
+            if child_1 >= da.length() - 1 and child_2 >= da.length():
                 parent = parent - 1
                 child_1 = (parent * 2) + 1
                 child_2 = (parent * 2) + 2
 
-            if child_2 >= self._heap.length() - 1:
-                if self._heap[child_1] < self._heap[parent]:
-                    self._heap[self._heap.length() - 1] = self._heap[parent]
-                    self._heap[parent] = self._heap[child_1]
-                    self._heap[child_1] = self._heap[self._heap.length() - 1]
+            if child_2 >= da.length() - 1:
+                if da[child_1] < da[parent]:
+                    da[da.length() - 1] = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = da[da.length() - 1]
                     parent = parent - 1
                     child_1 = (parent * 2) + 1
                     child_2 = (parent * 2) + 2
 
 
-            if self._heap[child_1] == self._heap[child_2]:
-                if self._heap[child_1] < self._heap[parent]:
-                    self._heap[self._heap.length() - 1] = self._heap[parent]
-                    self._heap[parent] = self._heap[child_1]
-                    self._heap[child_1] = self._heap[self._heap.length() - 1]
+            if da[child_1] == da[child_2]:
+                if da[child_1] < da[parent]:
+                    da[da.length() - 1] = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = da[da.length() - 1]
                     parent = parent - 1
                     child_1 = (parent * 2) + 1
                     child_2 = (parent * 2) + 2
@@ -153,13 +155,13 @@ class MinHeap:
                     child_2 = (parent * 2) + 2
 
 
-            if child_2 < self._heap.length() - 1:
+            if child_2 < da.length() - 1:
 
-                if self._heap[child_1] < self._heap[child_2]:
-                    if self._heap[child_1] < self._heap[parent]:
-                        self._heap[self._heap.length() - 1] = self._heap[parent]
-                        self._heap[parent] = self._heap[child_1]
-                        self._heap[child_1] = self._heap[self._heap.length() - 1]
+                if da[child_1] < da[child_2]:
+                    if da[child_1] < da[parent]:
+                        da[da.length() - 1] = da[parent]
+                        da[parent] = da[child_1]
+                        da[child_1] = da[da.length() - 1]
                         parent = parent - 1
                         child_1 = (parent * 2) + 1
                         child_2 = (parent * 2) + 2
@@ -168,11 +170,11 @@ class MinHeap:
                         child_1 = (parent * 2) + 1
                         child_2 = (parent * 2) + 2
 
-                if self._heap[child_1] > self._heap[child_2]:
-                    if self._heap[child_2] < self._heap[parent]:
-                        self._heap[self._heap.length() - 1] = self._heap[parent]
-                        self._heap[parent] = self._heap[child_2]
-                        self._heap[child_2] = self._heap[self._heap.length() - 1]
+                if da[child_1] > da[child_2]:
+                    if da[child_2] < da[parent]:
+                        da[da.length() - 1] = da[parent]
+                        da[parent] = da[child_2]
+                        da[child_2] = da[da.length() - 1]
                         parent = parent - 1
                         child_1 = (parent * 2) + 1
                         child_2 = (parent * 2) + 2
@@ -182,10 +184,10 @@ class MinHeap:
                         child_2 = (parent * 2) + 2
 
             else:
-                if self._heap[child_1] < self._heap[parent]:
-                    self._heap[self._heap.length() - 1] = self._heap[parent]
-                    self._heap[parent] = self._heap[child_1]
-                    self._heap[child_1] = self._heap[self._heap.length() - 1]
+                if da[child_1] < da[parent]:
+                    da[da.length() - 1] = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = da[da.length() - 1]
                     parent = parent - 1
                     child_1 = (parent * 2) + 1
                     child_2 = (parent * 2) + 2
@@ -195,7 +197,9 @@ class MinHeap:
                     child_2 = (parent * 2) + 2
 
         da._size -= 1
-        return
+        for index in range(0, da.length()):
+            self._heap[index] = da[index]
+
 
 
 
