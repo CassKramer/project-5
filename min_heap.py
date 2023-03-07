@@ -113,8 +113,7 @@ class MinHeap:
         """
         overrides heap and uses dynamic array to build new heap
         """
-        if self._heap.length() == self._heap._capacity:
-            self._heap.resize(self._heap._capacity * 2)
+
         if self._heap.length() < da.length():
             while self._heap._size < da.length():
                 self._heap._size += 1
@@ -135,7 +134,7 @@ class MinHeap:
                 child_2 = (parent * 2) + 2
 
 
-            elif self._heap[child_1] < self._heap[child_2] or child_2 > self._heap.length() - 1:
+            elif self._heap[child_1] < self._heap[child_2]:
                 if self._heap[parent] > self._heap[child_1]:
                     self._heap[parent] = self._heap[child_1]
                     self._heap[child_1] = self._heap[parent]
@@ -156,7 +155,12 @@ class MinHeap:
                     child_1 = (parent * 2) + 1
                     child_2 = (parent * 2) + 2
 
-            else:
+                else:
+                    parent = parent - 1
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
+
+            elif self._heap[child_1] == self._heap[child_2]:
                 if self._heap[parent] > self._heap[child_1]:
                     self._heap[parent] = self._heap[child_1]
                     self._heap[child_1] = self._heap[parent]
