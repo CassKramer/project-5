@@ -263,13 +263,14 @@ def heapsort(da: DynamicArray) -> None:
     """
     Sorts dynamic array in non-ascending order
     """
-    da._size += 1
-    for index in range(0, da.length()):
-        if da[index] > da[index + 1]:
-            da[da.length() - 1] = da[index]
+
+    for index in range(0, da.length() - 1):
+        if da[index] < da[index + 1]:
+            value = da[index]
             da[index] = da[index + 1]
-            da[index + 1] = da[da.length() - 1]
-    da._size -= 1
+            da[index + 1] = value
+
+
 
 
 # It's highly recommended that you implement the following optional          #
