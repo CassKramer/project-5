@@ -128,6 +128,10 @@ class MinHeap:
             for index in range(0, da.length()):
                 self._heap[index] = da[index]
 
+        if self._heap.length() == da.length():
+           for index in range(0, da.length()):
+                self._heap[index] = da[index]
+
         parent = (self._heap.length() - 1) // 2
         child_1 = (parent * 2) + 1
         child_2 = (parent * 2) + 2
