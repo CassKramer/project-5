@@ -137,7 +137,53 @@ class MinHeap:
         child_2 = (parent * 2) + 2
 
         while parent >= 0:
-            if child_1 > self._heap.length() - 1:
+
+            if parent == 0:
+                if self._heap[child_1] < self._heap[child_2]:
+                    if self._heap[parent] > self._heap[child_1]:
+                        value = self._heap[parent]
+                        self._heap[parent] = self._heap[child_1]
+                        self._heap[child_1] = value
+                        parent = child_1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+                    else:
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+                elif self._heap[child_1] > self._heap[child_2]:
+                    if self._heap[parent] > self._heap[child_2]:
+                        value = self._heap[parent]
+                        self._heap[parent] = self._heap[child_2]
+                        self._heap[child_2] = value
+                        parent = child_2
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+
+
+                    else:
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+                elif self._heap[child_1] == self._heap[child_2]:
+                    if self._heap[parent] > self._heap[child_1]:
+                        value = self._heap[parent]
+                        self._heap[parent] = self._heap[child_1]
+                        self._heap[child_1] = value
+                        parent = child_1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+                    else:
+                        parent = parent - 1
+                        child_1 = (parent * 2) + 1
+                        child_2 = (parent * 2) + 2
+
+            elif child_1 > self._heap.length() - 1:
                 parent = parent - 1
                 child_1 = (parent * 2) + 1
                 child_2 = (parent * 2) + 2
