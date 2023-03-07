@@ -261,9 +261,15 @@ class MinHeap:
 
 def heapsort(da: DynamicArray) -> None:
     """
-    TODO: Write this implementation
+    Sorts dynamic array in non-ascending order
     """
-    pass
+    da._size += 1
+    for index in range(0, da.length()):
+        if da[index] > da[index + 1]:
+            da[da.length() - 1] = da[index]
+            da[index] = da[index + 1]
+            da[index + 1] = da[da.length() - 1]
+    da._size -= 1
 
 
 # It's highly recommended that you implement the following optional          #
