@@ -142,10 +142,10 @@ class MinHeap:
                 value = self._heap[parent]
                 self._heap[parent] = self._heap[child_1]
                 self._heap[child_1] = value
-                return
+                parent = -1
 
         if self._heap.length() <= 1:
-            return
+            parent = -1
 
 
 
