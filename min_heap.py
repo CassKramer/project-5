@@ -133,7 +133,7 @@ class MinHeap:
                 self._heap[index] = da[index]
 
 
-        parent = (self._heap.length() - 1) - 1 // 2
+        parent = (self._heap.length() // 2) - 1
         child_1 = (parent * 2) + 1
         child_2 = (parent * 2) + 2
 
