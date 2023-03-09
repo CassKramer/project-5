@@ -132,9 +132,22 @@ class MinHeap:
            for index in range(0, da.length()):
                 self._heap[index] = da[index]
 
+
         parent = (self._heap.length() - 1) // 2
         child_1 = (parent * 2) + 1
         child_2 = (parent * 2) + 2
+
+        if self._heap.length() == 2:
+            if self._heap[parent] > self._heap[child_1]:
+                value = self._heap[parent]
+                self._heap[parent] = self._heap[child_1]
+                self._heap[child_1] = value
+                return
+
+        if self._heap.length() <= 1:
+            return
+
+
 
         while parent >= 0:
 
@@ -264,11 +277,8 @@ def heapsort(da: DynamicArray) -> None:
     Sorts dynamic array in non-ascending order
     """
 
-    for index in range(0, da.length() - 1):
-        if da[index] < da[index + 1]:
-            value = da[index]
-            da[index] = da[index + 1]
-            da[index + 1] = value
+
+
 
 
 
