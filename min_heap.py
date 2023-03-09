@@ -138,10 +138,14 @@ class MinHeap:
         child_2 = (parent * 2) + 2
 
         if self._heap.length() == 2:
-            if self._heap[parent] > self._heap[child_1]:
+            if child_1 > self._heap.length() - 1:
+                parent = -1
+            elif self._heap[parent] > self._heap[child_1]:
                 value = self._heap[parent]
                 self._heap[parent] = self._heap[child_1]
                 self._heap[child_1] = value
+                parent = -1
+            else:
                 parent = -1
 
         if self._heap.length() <= 1:
@@ -654,8 +658,8 @@ if __name__ == '__main__':
 
     print("\nPDF - build_heap example 2")
     print("--------------------------")
-    da = DynamicArray([48858, 94147, 28440, 75499, 70382, 61258, -45259, -64997, -50982])
-    h = MinHeap(['zebra', 'apple'])
+    da = DynamicArray([-47042, 7426])
+    h = MinHeap([-20500, 71331, -9802])
     print(h)
     h.build_heap(da)
     print(h)
