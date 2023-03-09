@@ -287,6 +287,9 @@ def heapsort(da: DynamicArray) -> None:
             da[child_1] = value
             parent = -1
 
+        else:
+            parent = -1
+
     if da.length() <= 1:
         parent = -1
 
@@ -656,7 +659,12 @@ if __name__ == '__main__':
     heapsort(da)
     print(f"After:  {da}")
 
-
+    print("\nPDF - heapsort example 2")
+    print("------------------------")
+    da = DynamicArray([23362, 52005])
+    print(f"Before: {da}")
+    heapsort(da)
+    print(f"After:  {da}")
 
 
     print("\nPDF - size example 1")
