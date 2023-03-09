@@ -1,6 +1,6 @@
 # Name: Cassandra Kramer
 # OSU Email: kramecas@oregonstate.edu
-# Course: CS261 - Data Structures/ Section
+# Course: CS261 - Data Structures/ Section 405
 # Assignment: 5 MinHeap Implementation
 # Due Date: 3/6/2023
 # Description: Use dynamic array assignment to implement the complete binary tree heap
@@ -675,7 +675,7 @@ if __name__ == '__main__':
 
     print("\nPDF - build_heap example 2")
     print("--------------------------")
-    da = DynamicArray([7767, 39602, 16766, -54727])
+    da = DynamicArray([99457, 94198, 77287, 71080, 48200, 43993, 14347, 14347, -18416, -29704, -33591, -38600, -38725, -53538, -53538, -73911])
     h = MinHeap([-20500, 71331, -9802])
     print(h)
     h.build_heap(da)
