@@ -157,7 +157,7 @@ class MinHeap:
 
             if parent == 0:
 
-                while child_1 != self._heap.length() and parent >= 0:
+                while child_1 < self._heap.length() and parent >= 0:
                     if child_2 > self._heap.length() - 1:
                         if self._heap[parent] > self._heap[child_1]:
                             value = self._heap[parent]
