@@ -276,13 +276,205 @@ def heapsort(da: DynamicArray) -> None:
     """
     Sorts dynamic array in non-ascending order
     """
+    parent = (da.length() - 1) // 2
+    child_1 = (parent * 2) + 1
+    child_2 = (parent * 2) + 2
+
+    if da.length() == 2:
+        if da[parent] > da[child_1]:
+            value = da[parent]
+            da[parent] = da[child_1]
+            da[child_1] = value
+            parent = -1
+
+    if da.length() <= 1:
+        parent = -1
+
+    while parent >= 0:
+
+        if parent == 0:
+            if da[child_1] < da[child_2]:
+                if da[parent] > da[child_1]:
+                    value = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = value
+                    parent = child_1
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
+
+                else:
+                    parent = parent - 1
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
+
+            elif da[child_1] > da[child_2]:
+                if da[parent] > da[child_2]:
+                    value = da[parent]
+                    da[parent] = da[child_2]
+                    da[child_2] = value
+                    parent = child_2
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
 
 
 
+                else:
+                    parent = parent - 1
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
+
+            elif da[child_1] == da[child_2]:
+                if da[parent] > da[child_1]:
+                    value = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = value
+                    parent = child_1
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
+
+                else:
+                    parent = parent - 1
+                    child_1 = (parent * 2) + 1
+                    child_2 = (parent * 2) + 2
+
+        elif child_1 > da.length() - 1:
+            parent = parent - 1
+            child_1 = (parent * 2) + 1
+            child_2 = (parent * 2) + 2
+
+        elif child_2 > da.length() - 1:
+            if da[parent] > da[child_1]:
+                value = da[parent]
+                da[parent] = da[child_1]
+                da[child_1] = value
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+            else:
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+
+        elif da[child_1] < da[child_2]:
+            if da[parent] > da[child_1]:
+                value = da[parent]
+                da[parent] = da[child_1]
+                da[child_1] = value
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+            else:
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+        elif da[child_1] > da[child_2]:
+            if da[parent] > da[child_2]:
+                value = da[parent]
+                da[parent] = da[child_2]
+                da[child_2] = value
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+            else:
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+        elif da[child_1] == da[child_2]:
+            if da[parent] > da[child_1]:
+                value = da[parent]
+                da[parent] = da[child_1]
+                da[child_1] = value
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
+
+            else:
+                parent = parent - 1
+                child_1 = (parent * 2) + 1
+                child_2 = (parent * 2) + 2
 
 
 
+    count = da.length() - 1
+    value = da[0]
+    da[0] = da[count]
+    da[da.length() - 1] = value
+    count -= 1
+    parent = 0
+    child_1 = (2 * parent) + 1
+    child_2 = (2 * parent) + 2
+    for index in range(0, count):
+        while count != 0:
+            if child_1 >= count:
+                if child_1 == 1:
+                    count = 0
 
+                else:
+                    value = da[0]
+                    da[0] = da[count]
+                    da[count] = value
+                    parent = 0
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                    count -= 1
+
+
+            elif da[child_1] < da[child_2]:
+                if da[parent] > da[child_1]:
+                    value = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = value
+                    parent = child_1
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                else:
+                    value = da[0]
+                    da[0] = da[count]
+                    da[count] = value
+                    parent = 0
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                    count -= 1
+
+            elif da[child_1] > da[child_2]:
+                if da[parent] > da[child_2]:
+                    value = da[parent]
+                    da[parent] = da[child_2]
+                    da[child_2] = value
+                    parent = child_2
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                else:
+                    value = da[0]
+                    da[0] = da[count]
+                    da[count] = value
+                    parent = 0
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                    count -= 1
+
+            elif da[child_1] == da[child_2]:
+                if da[parent] > da[child_1]:
+                    value = da[parent]
+                    da[parent] = da[child_1]
+                    da[child_1] = value
+                    parent = child_1
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                else:
+                    value = da[0]
+                    da[0] = da[count]
+                    da[count] = value
+                    parent = 0
+                    child_1 = (2 * parent) + 1
+                    child_2 = (2 * parent) + 2
+                    count -= 1
 # It's highly recommended that you implement the following optional          #
 # function for percolating elements down the MinHeap. You can call           #
 # this from inside the MinHeap class. You may edit the function definition.  #
@@ -439,6 +631,9 @@ if __name__ == '__main__':
     print(f"Before: {da}")
     heapsort(da)
     print(f"After:  {da}")
+
+
+
 
     print("\nPDF - size example 1")
     print("--------------------")
