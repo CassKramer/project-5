@@ -416,7 +416,7 @@ def heapsort(da: DynamicArray) -> None:
         while count != 0:
             if child_1 >= count:
                 if child_1 == 1:
-                    count = 0
+                    count -= 1
 
                 elif da[0] < da[count]:
                     value = da[0]
@@ -648,7 +648,7 @@ if __name__ == '__main__':
 
     print("\nPDF - build_heap example 2")
     print("--------------------------")
-    da = DynamicArray([14322, 14975, -56135, 59268, -73670, 8178, 31093, 90860, 39393])
+    da = DynamicArray([-23811, 22492, -93689, 13756])
     h = MinHeap(['zebra', 'apple'])
     print(h)
     h.build_heap(da)
