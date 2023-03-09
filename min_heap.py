@@ -424,7 +424,7 @@ def heapsort(da: DynamicArray) -> None:
                     child_2 = (2 * parent) + 2
                     count -= 1
 
-            if child_2 >= count:
+            elif child_2 >= count:
                 if da[parent] > da[child_1]:
                     value = da[parent]
                     da[parent] = da[child_1]
