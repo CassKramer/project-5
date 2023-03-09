@@ -648,7 +648,7 @@ if __name__ == '__main__':
 
     print("\nPDF - build_heap example 2")
     print("--------------------------")
-    da = DynamicArray([-90688, 88625, -31034, 68608])
+    da = DynamicArray([14322, 14975, -56135, 59268, -73670, 8178, 31093, 90860, 39393])
     h = MinHeap(['zebra', 'apple'])
     print(h)
     h.build_heap(da)
